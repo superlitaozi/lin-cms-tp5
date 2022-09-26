@@ -84,6 +84,20 @@ Route::group('', function () {
             // 删除图书
             Route::delete(':bid', 'api/v1.Book/delete');
         });
+        Route::group('worker', function (){
+           Route::get('all_workers','api/v1.Worker/getAllWorkers');
+           Route::get(':id','api/v1.Worker/getWorkerById');
+           Route::post('','api/v1.Worker/addWorker');
+           Route::patch(':id','api/v1.Worker/updateWorker');
+           Route::delete(':wid', 'api/v1.Worker/delWorker');
+        });
+        Route::group('worker_handle',function (){
+            Route::get('handles','api/v1.WorkerHandle/getHandles');
+            Route::get('handle/:id','api/v1.WorkerHandle/getWorkerHandles');
+        });
+        Route::group('workshop_line', function (){
+            Route::get('all_wpl','api/v1.WorkshopLine/getWorkshopLine');
+        });
 
     });
 })->middleware(['Authentication', 'ReflexValidate'])->allowCrossDomain(true, $header = [
